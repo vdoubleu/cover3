@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server'
 import { PrismaClient } from '@prisma/client'
  
-export async function GET() {
+export async function GET(_req: NextRequest) {
   const prisma = new PrismaClient()
 
   const sessionData = await prisma.sessions.findMany({
