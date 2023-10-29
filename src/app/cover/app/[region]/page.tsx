@@ -121,7 +121,7 @@ export default function Page({ params }: { params: { region: string } }) {
 
   return (
     <main>
-      <Header />
+      <Header logoOnClick={() => router.push("/cover/app")} />
       <Container>
         <Typography type="header" className="text-center mt-4">
           {regionMetadata.name}

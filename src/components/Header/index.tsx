@@ -11,12 +11,13 @@ type HeaderProps = {
     hasBackButton?: boolean;
     backOnClick?: () => void;
     backText?: string;
+    logoOnClick?: () => void;
     actionButtonUrl?: string;
     actionButtonText?: string;
     actionButtonIcon?: any;
 }
 
-const Header = ({ hasBackButton = true, backOnClick, backText, actionButtonUrl, actionButtonText, actionButtonIcon }: HeaderProps) => {
+const Header = ({ hasBackButton = true, backOnClick, backText, logoOnClick, actionButtonUrl, actionButtonText, actionButtonIcon }: HeaderProps) => {
   const router = useRouter();
 
   const backButton = hasBackButton ? (
@@ -48,9 +49,9 @@ const Header = ({ hasBackButton = true, backOnClick, backText, actionButtonUrl, 
   return (
       <div className="grid grid-cols-3 grid-rows-1 gap-3 mt-4">
         {backButton}
-        <Link href="/" className="flex justify-center">
+        <div className="flex justify-center" onClick={() => logoOnClick ? logoOnClick() : router.push("/")} >
           <LogoName />
-        </Link>
+        </div>
         {actionButton}
       </div>
   );

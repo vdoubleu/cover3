@@ -68,6 +68,7 @@ export default function Page() {
       <Header 
         backOnClick={cancelSweep}
         backText="Cancel"
+        logoOnClick={() => {}}
         actionButtonUrl={isDone ? "app/review" : `app/${startingName}`} 
         actionButtonText={isDone ? "Finish" : "Start" } 
         actionButtonIcon={faChevronRight}

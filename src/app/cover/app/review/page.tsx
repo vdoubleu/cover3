@@ -134,7 +134,7 @@ export default function Page() {
 
   return (
     <main>
-      <Header />
+      <Header logoOnClick={() => router.push("/cover/app")} />
       <Container>
         <Typography type="header" className="text-center mt-4">Review</Typography>
 
