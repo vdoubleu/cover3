@@ -14,8 +14,11 @@ export default function Page() {
 
   useEffect(() => {
 
-    fetch("/api/v1/sessions")
-      .then((response) => response.json())
+    fetch("/api/v1/sessions", {
+      next: {
+        revalidate: 0,
+      }
+    }).then((response) => response.json())
       .then((data) => setSessionData(
         data.map((session: any) => ({
           id: session.id,
