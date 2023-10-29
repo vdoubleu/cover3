@@ -14,7 +14,6 @@ export default function Page() {
 
   useEffect(() => {
     const loggedIn = !!getUserData();
-    console.log(loggedIn, getUserData());
 
     if (loggedIn) {
       setLoggedIn(true);

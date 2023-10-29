@@ -120,15 +120,13 @@ export default function Page() {
       }
     }
 
-    const a = await fetch("/api/v1/analytics", {
+    fetch("/api/v1/analytics", {
       method: "POST",
       body: JSON.stringify({
         building: reportData.buildingName,
         email: userData?.email,
       })
     });
-
-    console.log(a.status);
 
     setReportDataStorage(null);
     router.push("/cover/app/done");
