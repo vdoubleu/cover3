@@ -1,0 +1,51 @@
+"use client";
+
+import { LogoName } from '../Logo';
+import Button from '../Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+
+type HeaderProps = {
+    hasBackButton?: boolean;
+    actionButtonUrl?: string;
+    actionButtonText?: string;
+    actionButtonIcon?: any;
+}
+
+const Header = ({ hasBackButton = true, actionButtonUrl, actionButtonText, actionButtonIcon }: HeaderProps) => {
+  const router = useRouter();
+
+  const backButton = hasBackButton ? (
+    <Button
+      onClick={() => router.back()}
+      text="Back"
+      type="secondary"
+      buttonStyle="simple"
+      iconBefore={<FontAwesomeIcon icon={faChevronLeft} />}
+    />
+  ) : <div/>;
+
+  const actionButton = actionButtonUrl ? (
+    <Button
+      onClick={() => router.push(actionButtonUrl)}
+      text={actionButtonText || ""}
+      type="primary"
+      buttonStyle="simple"
+      iconAfter={<FontAwesomeIcon icon={actionButtonIcon} />}
+    />
+  ) : <div/>;
+
+  return (
+      <div className="grid grid-cols-3 grid-rows-1 gap-3 mt-4">
+        {backButton}
+        <Link href="/" className="flex justify-center">
+          <LogoName />
+        </Link>
+        {actionButton}
+      </div>
+  );
+}
+
+export default Header;
