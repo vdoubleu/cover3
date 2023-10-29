@@ -9,6 +9,7 @@ import Container from "@/components/Container";
 import { useRouter } from "next/navigation";
 import useBestReportData from "./useBestReportData";
 import {useEffect, useState} from "react";
+import Spinner from "@/components/Spinner";
 
 export default function Page() {
   const { getReportData, setReportData: setReportDataStorage } = useBestReportData();
@@ -25,7 +26,14 @@ export default function Page() {
   }, [getReportData])
 
   if (!reportData) {
-    return (<div>Loading... if this does not load, there may be an error</div>);
+    return (
+      <main>
+        <Header />
+        <div className="mt-16 flex justify-center">
+          <Spinner />
+        </div>
+      </main>
+    );
   }
 
   const { buildingName, regionInfo } = reportData;

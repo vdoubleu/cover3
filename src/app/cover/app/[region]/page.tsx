@@ -10,6 +10,7 @@ import Typography from "@/components/Typography";
 import SimpleInput from "@/components/SimpleInput";
 import MultiLineInput from "@/components/MultiLineInput";
 import Button from "@/components/Button";
+import Spinner from "@/components/Spinner";
 
 export default function Page({ params }: { params: { region: string } }) {
   const { getReportData, setReportData: setProperReportData } = useBestReportData();
@@ -53,7 +54,14 @@ export default function Page({ params }: { params: { region: string } }) {
   }, [getReportData, region])
 
   if (!reportData) {
-    return (<div>Loading... if this does not load, there may be an error</div>);
+    return (
+      <main>
+        <Header />
+        <div className="mt-16 flex justify-center">
+          <Spinner />
+        </div>
+      </main>
+    );
   }
 
   const { buildingName, regionInfo } = reportData;

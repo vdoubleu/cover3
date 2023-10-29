@@ -3,6 +3,7 @@
 import Button from "@/components/Button";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
+import Spinner from "@/components/Spinner";
 import Typography from "@/components/Typography";
 import {CoverageState} from "@/lib/CoverageData";
 import {CoverageInfoEdit, getCoverageInfoText} from "@/lib/ReportGen";
@@ -35,15 +36,36 @@ export default function Page({ params: { sessionId } }: { params: { sessionId: s
   }, [sessionIdNum])
 
   if (Number.isNaN(sessionIdNum)) {
-    return <div>Invalid session ID</div>;
+    return (
+      <main>
+        <Header />
+        <div>
+          Invalid session ID
+        </div>
+      </main>
+    );
   }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <main>
+        <Header />
+        <div className="mt-16 flex justify-center">
+          <Spinner />
+        </div>
+      </main>
+    );
   }
 
   if (!sessionData) {
-    return <div>Session not found</div>;
+    return (
+      <main>
+        <Header />
+        <div>
+          Session not found
+        </div>
+      </main>
+    );
   }
 
   const reports = sessionData.sweeps.map((sweep: any, index: number) => {

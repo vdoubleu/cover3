@@ -10,6 +10,7 @@ import Dropdown from "@/components/Dropdown";
 import { BUILDINGS } from "@/lib/buildingLayouts";
 import { useRouter } from "next/navigation";
 import useUserData from "@/lib/useUserData";
+import Spinner from "@/components/Spinner";
 
 export default function Page() {
   const { getUserData } = useUserData();
@@ -62,8 +63,8 @@ export default function Page() {
     return (
       <main>
         <Header />
-        <div className="container mx-auto px-4">
-          <h1 className="text-center text-3xl my-4">Creating Session...</h1>
+        <div className="mt-16 flex justify-center">
+          <Spinner />
         </div>
       </main>
     );

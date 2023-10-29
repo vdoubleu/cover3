@@ -10,6 +10,7 @@ import {useRouter} from "next/navigation";
 import {CoverageState} from "@/lib/CoverageData";
 import { getCoverageInfoText, CoverageInfoEdit } from "@/lib/ReportGen";
 import Button from "@/components/Button";
+import Spinner from "@/components/Spinner";
 
 export default function Page() {
   const [endTime, setEndTime] = useState(new Date());
@@ -41,7 +42,14 @@ export default function Page() {
   }, [getReportData])
 
   if (!reportData) {
-    return (<div>Loading... if this does not load, there may be an error</div>);
+    return (
+      <main>
+        <Header />
+        <div className="mt-16 flex justify-center">
+          <Spinner />
+        </div>
+      </main>
+    );
   }
 
   const isOneOffReport = !reportData.id;

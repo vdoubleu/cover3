@@ -9,6 +9,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from "react";
 
 import type { Session } from "@/app/shared/types";
+import Spinner from "@/components/Spinner";
 
 export default function Page() {
   const router = useRouter();
@@ -53,8 +54,8 @@ export default function Page() {
             </div>
           ))}
         </div>)}
-        {!sessionData && (<div>
-          Loading...
+        {!sessionData && (<div className="flex justify-center mt-16">
+          <Spinner />
         </div>)}
         {sessionData && sessionData.length === 0 && (<div>
           No currently active sessions. Start a new one by clicking the button on the top right.

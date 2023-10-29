@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import Typography from "@/components/Typography";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleXmark} from "@fortawesome/free-solid-svg-icons";
+import Spinner from "@/components/Spinner";
 
 export default function Page({ params: { sessionId } }: { params: { sessionId: string } }) {
   const router = useRouter();
@@ -45,7 +46,9 @@ export default function Page({ params: { sessionId } }: { params: { sessionId: s
     return (
       <main>
         <Header />
-        Loading...
+        <div className="mt-16 flex justify-center">
+          <Spinner />
+        </div>
       </main>
     );
   }
