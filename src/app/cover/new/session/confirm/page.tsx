@@ -13,7 +13,7 @@ export default function Page() {
 
   return (
     <main>
-      <Header />
+      <Header hasBackButton={false} />
       <Container>
         <Typography type="header" className="my-4">Start your <br /> Sweep Now?</Typography>
         <Typography type="subheader3">Do you want to start <br /> your sweep now?</Typography>

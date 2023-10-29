@@ -4,12 +4,14 @@ import Header from "@/components/Header";
 import Container from "@/components/Container";
 import SessionCard from "./SessionCard";
 import Typography from "@/components/Typography";
+import { useRouter } from "next/navigation";
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from "react";
 
 import type { Session } from "@/app/shared/types";
 
 export default function Page() {
+  const router = useRouter();
   const [sessionData, setSessionData] = useState<Session[] | null>(null);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ export default function Page() {
 
   return (
     <main>
-      <Header actionButtonUrl="/cover/new" actionButtonText="Add" actionButtonIcon={faPlus} />
+      <Header backOnClick={() => router.push("/")} actionButtonUrl="/cover/new" actionButtonText="Add" actionButtonIcon={faPlus} />
       <Container>
         <Typography type="header" className="text-center my-4">Active Sessions</Typography>
         {sessionData && (<div>

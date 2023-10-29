@@ -11,7 +11,7 @@ import useBestReportData from "./useBestReportData";
 import {useEffect, useState} from "react";
 
 export default function Page() {
-  const { getReportData } = useBestReportData();
+  const { getReportData, setReportData: setReportDataStorage } = useBestReportData();
   const router = useRouter();
   const [reportData, setReportData] = useState<any>(null);
 
@@ -40,10 +40,34 @@ export default function Page() {
   });
 
   const startingName = regionNames[0];
+
+  const cancelSweep = async () => {
+    const confirm = window.confirm("Are you sure you want to cancel this session?");
+
+    if (!confirm) {
+      return;
+    }
+
+    if (reportData.id) {
+      const res = await fetch(`/api/v1/sweep?id=${reportData.id}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) {
+        alert("There was an error canceling the sweep.");
+      }
+    }
+
+    await setReportDataStorage(null);
+
+    router.push("/");
+  } 
   
   return (
     <main>
       <Header 
+        backOnClick={cancelSweep}
+        backText="Cancel"
         actionButtonUrl={isDone ? "app/review" : `app/${startingName}`} 
         actionButtonText={isDone ? "Finish" : "Start" } 
         actionButtonIcon={faChevronRight}

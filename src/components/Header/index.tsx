@@ -9,18 +9,26 @@ import Link from 'next/link';
 
 type HeaderProps = {
     hasBackButton?: boolean;
+    backOnClick?: () => void;
+    backText?: string;
     actionButtonUrl?: string;
     actionButtonText?: string;
     actionButtonIcon?: any;
 }
 
-const Header = ({ hasBackButton = true, actionButtonUrl, actionButtonText, actionButtonIcon }: HeaderProps) => {
+const Header = ({ hasBackButton = true, backOnClick, backText, actionButtonUrl, actionButtonText, actionButtonIcon }: HeaderProps) => {
   const router = useRouter();
 
   const backButton = hasBackButton ? (
     <Button
-      onClick={() => router.back()}
-      text="Back"
+      onClick={() => { 
+        if (backOnClick) {
+          backOnClick();
+        } else {
+          router.back();
+        }
+      }}
+      text={backText ?? "Back"}
       type="secondary"
       buttonStyle="simple"
       iconBefore={<FontAwesomeIcon icon={faChevronLeft} />}
