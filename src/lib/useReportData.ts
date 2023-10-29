@@ -1,9 +1,10 @@
 "use client";
 
+import {useCallback} from "react";
 import { CoverageState } from "./CoverageData";
 
 export default function useReportData() {
-  function getReportData() {
+  const getReportData = useCallback(() => {
     if (typeof window === "undefined") {
       return null;
     }
@@ -17,9 +18,9 @@ export default function useReportData() {
     const reportDataJson: CoverageState = JSON.parse(reportData);
 
     return reportDataJson;
-  }
+  }, []);
 
-  function setReportData(reportData: CoverageState | null) {
+  const setReportData = useCallback((reportData: CoverageState | null) => {
     if (typeof window === "undefined") {
       return;
     }
@@ -30,7 +31,7 @@ export default function useReportData() {
     }
 
     localStorage.setItem('reportData', JSON.stringify(reportData));
-  }
+  }, []);
 
   return {
     getReportData,

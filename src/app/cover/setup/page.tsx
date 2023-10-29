@@ -21,7 +21,7 @@ export default function Page() {
       setName(userData.name);
       setEmail(userData.email);
     }
-  }, []);
+  }, [getUserData]);
 
   const handleDone = () => {
     setUserData({

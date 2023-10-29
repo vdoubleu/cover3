@@ -2,7 +2,7 @@
 
 import Header from "@/components/Header"
 import Container from "@/components/Container";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { dateOnlyFormat, roundedHourOnlyFormat } from "@/lib/DateTimeHelpers";
 import SessionCard from "./sessionCard";
 import { useRouter } from "next/navigation";
@@ -10,17 +10,14 @@ import Typography from "@/components/Typography";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleXmark} from "@fortawesome/free-solid-svg-icons";
 
-export default function page({ params: { sessionId } }: { params: { sessionId: string } }) {
+export default function Page({ params: { sessionId } }: { params: { sessionId: string } }) {
   const router = useRouter();
   const [sessionData, setSessionData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const sessionIdNum = Number(sessionId);
-  if (Number.isNaN(sessionIdNum)) {
-    return <div>Invalid Session ID</div>
-  }
 
-  const fetchSessionData = async () => {
+  const fetchSessionData = useCallback(async () => {
     setIsLoading(true);
     const res = await fetch(`/api/v1/session?id=${sessionIdNum}`)
 
@@ -34,11 +31,15 @@ export default function page({ params: { sessionId } }: { params: { sessionId: s
 
     setSessionData(data);
     setIsLoading(false);
-  }
+  }, [sessionIdNum]);
 
   useEffect(() => {
     fetchSessionData();
-  }, [sessionIdNum]);
+  }, [sessionIdNum, fetchSessionData]);
+
+  if (Number.isNaN(sessionIdNum)) {
+    return <div>Invalid Session ID</div>
+  }
 
   if (isLoading ) {
     return (

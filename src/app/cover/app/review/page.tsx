@@ -38,10 +38,10 @@ export default function Page() {
     }
 
     asyncGet();
-  }, [])
+  }, [getReportData])
 
   if (!reportData) {
-    return <div>Loading... if this doesn't load, there may be an error</div>;
+    return (<div>Loading... if this does not load, there may be an error</div>);
   }
 
   const isOneOffReport = !reportData.id;

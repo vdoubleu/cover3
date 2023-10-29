@@ -22,7 +22,7 @@ export default function Page() {
     return () => {
       setLoggedIn(false);
     }
-  }, []);
+  }, [getUserData]);
 
   return (
     <main>

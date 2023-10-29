@@ -13,29 +13,30 @@ export default function Page({ params: { sessionId } }: { params: { sessionId: s
   const [isLoading, setIsLoading] = useState(true);
 
   const sessionIdNum = Number(sessionId);
+
+  useEffect(() => {
+    const fetchSessionData = async () => {
+      setIsLoading(true);
+      const res = await fetch(`/api/v1/session?id=${sessionIdNum}`)
+
+      if (!res.ok) {
+        alert("Error fetching session data");
+        setIsLoading(false);
+        return;
+      }
+
+      const data = await res.json();
+
+      setSessionData(data);
+      setIsLoading(false);
+    }
+
+      fetchSessionData();
+  }, [sessionIdNum])
+
   if (Number.isNaN(sessionIdNum)) {
     return <div>Invalid session ID</div>;
   }
-
-  const fetchSessionData = async () => {
-    setIsLoading(true);
-    const res = await fetch(`/api/v1/session?id=${sessionIdNum}`)
-
-    if (!res.ok) {
-      alert("Error fetching session data");
-      setIsLoading(false);
-      return;
-    }
-
-    const data = await res.json();
-
-    setSessionData(data);
-    setIsLoading(false);
-  }
-
-  useEffect(() => {
-    fetchSessionData();
-  }, [sessionIdNum])
 
   if (isLoading) {
     return <div>Loading...</div>;
