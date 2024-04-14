@@ -3,7 +3,7 @@
 import { useState } from "react";
 import SimpleInput from "@/components/SimpleInput";
 import Header from "@/components/Header";
-import Button from "@/components/Button";
+import Button, { HelpButton } from "@/components/Button";
 import Container from "@/components/Container";
 import Typography from "@/components/Typography";
 import Dropdown from "@/components/Dropdown";
@@ -100,6 +100,8 @@ export default function Page() {
             />
           </div>
         </div>
+
+        <HelpButton />
       </Container>
     </main>
   );

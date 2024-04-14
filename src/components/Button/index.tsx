@@ -93,3 +93,11 @@ export const LinkButton = ({
     </Link>
   );
 }
+
+export const HelpButton = () => {
+  return (
+      <Link href="/help">
+        <div className="fixed bottom-4 right-4 text-right p-2 rounded-md outline outline-solid border-blue-800">HELP</div>
+      </Link>
+  );
+}

@@ -1,6 +1,6 @@
 "use client"
 
-import { LinkButton } from "../components/Button";
+import { LinkButton, HelpButton } from "../components/Button";
 import Link from 'next/link';
 import { Logo } from '../components/Logo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -41,7 +41,7 @@ export default function Page() {
           )}
         </div>
       </div>
-      <h1 className="text-5xl text-center my-24"> Cover </h1>
+      <h1 className="text-5xl text-center my-24"> Cover 3 </h1>
 
       <div className="flex justify-center mt-16">
         {loggedIn ? (
@@ -56,6 +56,8 @@ export default function Page() {
           />
         )}
       </div>
+
+      <HelpButton />
     </main>
   )
 }
