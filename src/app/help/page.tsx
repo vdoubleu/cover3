@@ -21,12 +21,12 @@ export default function Page() {
 
       <br />      
       <br />      
-    If you are on ios, please use the share button at the bottom of the screen and select "Add to Home Screen"
+    If you are on ios, please use the share button at the bottom of the screen and select &quot;Add to Home Screen&quot;
 
     <br />
     <br />
 
-    If you are on android, please use the menu button and select "Add to Home Screen"
+    If you are on android, please use the menu button and select &quot;Add to Home Screen&quot;
     </Container>
     </main>
   );
