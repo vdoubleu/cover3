@@ -41,7 +41,9 @@ export default function Page() {
       <Container>
         <Typography type="header" className="text-center my-4">Active Sessions</Typography>
         {sessionData && (<div>
-          {sessionData.map((session: Session) => (
+          {sessionData
+            .toSorted((a, b) => b.startDateTime.getTime() - a.startDateTime.getTime())
+            .map((session: Session) => (
             <div key={session.id} className="col-12 col-md-4">
               <SessionCard
                 key={session.id}

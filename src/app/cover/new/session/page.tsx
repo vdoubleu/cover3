@@ -76,9 +76,10 @@ export default function Page() {
       <Container>
         <Typography type="header" className="mt-4">Create <br /> a Session</Typography>
         <Typography type="subheader3" className="mt-2">Others can add sweeps to this session to be grouped into a report</Typography>
+        <Typography type="body" className="mt-2">Note: Sessions are autodeleted after 3 days</Typography>
         <div className="flex items-center justify-center mt-4 flex-col gap-4">
           <Dropdown
-            labelText="Which building is this?"
+            labelText="Which building is this? (Tap Help to add layouts)"
             items={BUILDINGS}
             itemToString={(item) => item}
             onChange={(item) => setBuildingName(item)}
